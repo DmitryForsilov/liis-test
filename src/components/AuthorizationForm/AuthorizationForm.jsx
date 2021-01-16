@@ -1,0 +1,87 @@
+import React from 'react';
+import { useFormik } from 'formik';
+import cn from 'classnames';
+import * as yup from 'yup';
+import styles from './styles.module.css';
+
+const renderForm = (formik) => {
+  const loginError = formik.touched.login && formik.errors.login;
+  const passwordError = formik.touched.password && formik.errors.password;
+
+  const loginLabelClasses = cn(styles.form__label, {
+    [styles.form__label_invalid]: loginError,
+  });
+  const passwordLabelClasses = cn(styles.form__label, {
+    [styles.form__label_invalid]: passwordError,
+  });
+  const loginInputClasses = cn(styles.form__input, {
+    [styles.form__input_invalid]: loginError,
+  });
+  const passwordInputClasses = cn(styles.form__input, {
+    [styles.form__input_invalid]: passwordError,
+  });
+
+  return (
+    <form className={styles.form} onSubmit={formik.handleSubmit} noValidate>
+      <h1 className={styles.form__title}>Simple Flight Check</h1>
+      <div className={styles.form__group}>
+        <label className={loginLabelClasses} htmlFor="login">Логин:</label>
+        <input
+          id="login"
+          name="login"
+          type="text"
+          className={loginInputClasses}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.login}
+        />
+        <span className={styles['form__input-error']}>
+          {loginError}
+        </span>
+      </div>
+      <div className={styles.form__group}>
+        <label className={passwordLabelClasses} htmlFor="password">Пароль:</label>
+        <input
+          id="password"
+          name="password"
+          type="text"
+          className={passwordInputClasses}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password}
+        />
+        <span className={styles['form__input-error']}>
+          {passwordError}
+        </span>
+      </div>
+      <button className={styles['form__submit-button']} type="submit">Войти</button>
+    </form>
+  );
+};
+
+const generateValidationSchema = () => yup.object().shape({
+  login: yup.string().email('Введите имейл').required('Логин - обязательное поле'),
+  password: yup.string()
+    .min(8, 'Пароль должен содержать минимум 8 символов')
+    .matches(/^[^а-яё]+$/gi, 'Пароль не должен содержать кириллицу')
+    .required('Пароль - обязательное поле'),
+});
+
+const generateOnSubmit = () => () => {
+  console.log('submit');
+};
+
+export default () => {
+  console.log('render form');
+
+  const formik = useFormik({
+    initialValues: {
+      login: '',
+      password: '',
+    },
+    validationSchema: generateValidationSchema(),
+    onSubmit: generateOnSubmit(),
+  });
+
+  return renderForm(formik);
+};
