@@ -6,8 +6,8 @@ export default () => {
   console.log('render homepage');
 
   return (
-    <div className={styles.wrapper}>
+    <main className={styles.wrapper}>
       <AuthorizationForm />
-    </div>
+    </main>
   );
 };

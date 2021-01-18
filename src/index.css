@@ -2,9 +2,16 @@
 @import './vendor/fonts.css';
 
 :root {
-  --black-color: #424242;
-  --blue-color: #1157A7;
-  --red-color: #EB1717;
+  --color-black: #424242;
+  --color-blue: #1157A7;
+  --color-blue-dark: #0a2341;
+  --color-red: #EB1717;
+  --color-pink: #EB1717;
+  --color-gray: #878787;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {

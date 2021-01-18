@@ -60,7 +60,9 @@ const renderForm = (formik) => {
 };
 
 const generateValidationSchema = () => yup.object().shape({
-  login: yup.string().email('Введите имейл').required('Логин - обязательное поле'),
+  login: yup.string()
+    .email('Введите имейл')
+    .required('Логин - обязательное поле'),
   password: yup.string()
     .min(8, 'Пароль должен содержать минимум 8 символов')
     .matches(/^[^а-яё]+$/gi, 'Пароль не должен содержать кириллицу')
