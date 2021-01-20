@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
@@ -82,7 +81,6 @@ const generateOnSubmit = ({ dispatch, departureDate }) => ({ login }) => {
 export default () => {
   console.log('render form');
 
-  const user = useSelector((state) => state.user);
   const departureDate = useSelector(({ flightOptions }) => flightOptions.departureDate);
   const dispatch = useDispatch();
 
@@ -94,10 +92,6 @@ export default () => {
     validationSchema: generateValidationSchema(),
     onSubmit: generateOnSubmit({ dispatch, departureDate }),
   });
-
-  if (user.status === 'AUTHORIZED') {
-    return <Redirect to="/flights" />;
-  }
 
   return renderForm(formik);
 };

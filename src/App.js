@@ -23,7 +23,8 @@ export default () => {
 
   useEffect(() => {
     checkAuthorization({ dispatch, departureDate });
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [null]); // Для срабатывания эффекта только один раз
 
   return (
     <BrowserRouter>
