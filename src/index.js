@@ -1,16 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './App';
 import './vendor/normalize.css';
 import './index.css';
+import createStore from './redux/createStore';
 
-const runApp = () => {
+const run = () => {
   render(
     <React.StrictMode>
-      <App />
+      <Provider store={createStore()}>
+        <App />
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root'),
   );
 };
 
-runApp();
+run();

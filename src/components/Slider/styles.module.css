@@ -1,0 +1,19 @@
+.slider {
+  padding: 24px 0 30px;
+}
+
+.slider__slide {
+  width: 164px;
+  height: 150px;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, .15);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.slider__image {
+  width: 164px;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
+}

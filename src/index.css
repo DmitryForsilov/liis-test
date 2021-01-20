@@ -1,6 +1,19 @@
 @import './vendor/normalize.css';
 @import './vendor/fonts.css';
 
+:root {
+  --color-black: #424242;
+  --color-blue: #1157A7;
+  --color-blue-dark: #0a2341;
+  --color-red: #EB1717;
+  --color-pink: #EB1717;
+  --color-gray: #878787;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,5 +23,3 @@ body {
 body, html, #root {
   height: 100%;
 }
-
-

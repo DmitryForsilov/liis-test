@@ -1,0 +1,60 @@
+.flights-board__info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flights-board__route {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.flights-board__route > span::after {
+  content: '';
+  height: 18px;
+  width: 10px;
+  margin: 0 20px;
+  background-image: url('../../images/arrow-right-icon.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.flights-board__route > span:last-of-type::after {
+  display: none;
+}
+
+.flights-board__calendar-button {
+  display: flex;
+  padding: 0;
+  outline: none;
+  border: 2px solid transparent;
+  background-color: transparent;
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--color-blue);
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.flights-board__calendar-button:hover {
+  color: var(--color-blue-dark);
+}
+
+.flights-board__calendar-button-text {
+  margin-right: 20px;
+}
+
+.flights-board__calendar-button-icon {
+  stroke: var(--color-blue);
+  transition: .3s ease;
+}
+
+.flights-board__calendar-button:hover .flights-board__calendar-button-icon {
+  stroke: var(--color-blue-dark);
+}

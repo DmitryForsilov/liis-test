@@ -1,0 +1,179 @@
+.flights-box {
+  height: 100%;
+  max-height: calc(100% - 240px);
+  color: var(--color-black);
+}
+
+.flights-box__message, .flights-box__liked {
+  margin: 0 0 20px 0;
+  font-size: 17px;
+  font-weight: 300;
+}
+
+.flights-box__message_invalid {
+  color: var(--color-red);
+}
+
+.flights-box__liked > span {
+  font-weight: 500;
+  color: var(--color-blue);
+}
+
+.flights-box__list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 12px 0 0;
+  max-height: calc(100% - 40px);
+  overflow-y: scroll;
+}
+
+.flights-box__list::-webkit-scrollbar {
+  width: 2px;
+  background-color: #E7E7E7;
+  border-radius: 2px;
+}
+
+.flights-box__list::-webkit-scrollbar-thumb {
+  height: 98px;
+  background-color: #1157A7;
+  border-radius: 2px;
+}
+
+.flights-box__list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 18px 12px;
+  border-bottom: 1px solid #E7E7E7;
+}
+
+.flights-box__list-item {
+  margin-bottom: 20px;
+}
+
+.flights-box__list-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.flights-box__flight-icon {
+  width: 64px;
+  height: 64px;
+  background-image: url('../../images/flight-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.flights-box__flight-info-container {
+  width: 94%;
+  max-width: 490px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flights-box__flight-info-panel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.flights-box__flight-info-panel:last-of-type {
+  margin-bottom: 0;
+}
+
+.flights-box__route {
+  margin: 0;
+  font-size: 17px;
+}
+
+.flights-box__route > span::after {
+  content: '';
+  display: inline-block;
+  height: 12px;
+  width: 14px;
+  margin: 0 12px;
+  background-image: url('../../images/arrow-right-icon2.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.flights-box__route > span:last-of-type::after {
+  display: none;
+}
+
+.flights-box__like-button {
+  display: flex;
+  padding: 0;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.flights-box__like-button > svg {
+  fill: none;
+  transition: .3s ease;
+}
+
+.flights-box__like-button > svg > path {
+  stroke: #878787;
+  transition: .3s ease;
+}
+
+.flights-box__like-button:hover > svg {
+  transform: scale(1.2);
+}
+
+.flights-box__like-button_liked > svg {
+  fill: var(--color-pink);
+}
+
+.flights-box__like-button_liked > svg > path {
+  stroke: none;
+}
+
+.flights-box__date-time {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-gray);
+}
+
+.flights-box__date-time > span {
+  display: flex;
+  align-items: center;
+}
+
+.flights-box__date-time > span::after {
+  content: '';
+  display: inline-block;
+  width: 9px;
+  height: 1px;
+  margin: 0 10px;
+  background-color: #C4C4C4;
+  border-radius: 2px;
+}
+
+.flights-box__date-time > span:last-of-type::after {
+  display: none;
+}
+
+.flights-box__company {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-gray);
+}
+
+.flights-box__price {
+  margin: 0;
+  font-weight: 300;
+  font-size: 11px;
+  color: var(--color-gray);
+}
+
+.flights-box__price > span {
+  font-weight: normal;
+  font-size: 17px;
+  color: var(--color-black);
+}
