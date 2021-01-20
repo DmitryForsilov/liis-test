@@ -4,7 +4,7 @@
   color: var(--color-black);
 }
 
-.flights-box__message, .flights-box__favorites {
+.flights-box__message, .flights-box__liked {
   margin: 0 0 20px 0;
   font-size: 17px;
   font-weight: 300;
@@ -14,7 +14,7 @@
   color: var(--color-red);
 }
 
-.flights-box__favorites > span {
+.flights-box__liked > span {
   font-weight: 500;
   color: var(--color-blue);
 }
@@ -118,6 +118,10 @@
 .flights-box__like-button > svg > path {
   stroke: #878787;
   transition: .3s ease;
+}
+
+.flights-box__like-button:hover > svg {
+  transform: scale(1.2);
 }
 
 .flights-box__like-button_liked > svg {

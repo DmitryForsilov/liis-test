@@ -11,6 +11,7 @@ const proccessFlightsData = (flights, departureDate) => flights.map(() => ({
   departureTime: utils.getRandomTime(),
   carrier: 'Aeroflot',
   price: utils.getRandomPrice(),
+  isLiked: false,
 }));
 
 const sortByPrice = (flightsList) => {
@@ -29,7 +30,7 @@ const flightsSlice = createSlice({
       flightsById: {},
       allIds: [],
     },
-    favoritesCount: 0,
+    likedFlightsIds: [],
     fetchFlightsError: null,
   },
   reducers: {
@@ -46,8 +47,15 @@ const flightsSlice = createSlice({
     fetchFlightsFailure(state, { payload: { error } }) {
       state.fetchFlightsError = error;
     },
-    setVavoritesCount(state, { payload: { count } }) {
-      state.favoritesCount = count;
+    addFlightToLiked(state, { payload: { id } }) {
+      state.flightsList.flightsById[id].isLiked = true;
+      state.likedFlightsIds.push(id);
+    },
+    removeFlightFromLiked(state, { payload: { id } }) {
+      const updatedLikedFlightsIds = _.remove(state.likedFlightsIds, (likedId) => likedId !== id);
+
+      state.flightsList.flightsById[id].isLiked = false;
+      state.likedFlightsIds = updatedLikedFlightsIds;
     },
   },
 });
