@@ -60,8 +60,6 @@ const renderFlight = ({ flight, dispatch }) => (
 );
 
 export default () => {
-  console.log('render flights box');
-
   const flightsList = useSelector(({ flights }) => (
     flights.flightsList.allIds.map((id) => flights.flightsList.flightsById[id])
   ));
@@ -84,6 +82,7 @@ export default () => {
       </div>
     );
   }
+
   return (
     <div className={styles['flights-box']}>
       <p className={styles['flights-box__liked']}>

@@ -29,13 +29,10 @@ const generateOnChange = ({ dispatch }) => (date) => {
 };
 
 export default () => {
-  console.log('render flights info');
-
   const {
     origin, destination, departureDate,
   } = useSelector((state) => state.flightOptions);
   const dispatch = useDispatch();
-  console.log('departureDate in info', departureDate);
 
   return (
     <div className={styles['flights-board__info']}>

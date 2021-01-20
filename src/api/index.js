@@ -6,8 +6,6 @@ const setLoginToCookie = (login) => cookies.set('login', login);
 const removeLoginFromCookie = () => cookies.remove('login');
 
 const fetchFakeFlights = async () => {
-  console.log('fetch api');
-
   const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
 
   return res.data;

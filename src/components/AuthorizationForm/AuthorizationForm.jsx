@@ -79,8 +79,6 @@ const generateOnSubmit = ({ dispatch, departureDate }) => ({ login }) => {
 };
 
 export default () => {
-  console.log('render form');
-
   const departureDate = useSelector(({ flightOptions }) => flightOptions.departureDate);
   const dispatch = useDispatch();
 

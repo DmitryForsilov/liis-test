@@ -11,8 +11,6 @@ const renderSlide = (image) => (
 );
 
 export default () => {
-  console.log('render slider');
-
   const travelImages = useSelector((state) => state.travelImages);
 
   return (

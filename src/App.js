@@ -16,8 +16,6 @@ const checkAuthorization = ({ dispatch, departureDate }) => {
 };
 
 export default () => {
-  console.log('render App');
-
   const dispatch = useDispatch();
   const departureDate = useSelector(({ flightOptions }) => flightOptions.departureDate);
 

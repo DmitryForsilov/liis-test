@@ -6,8 +6,6 @@ import Header from '../../components/Header/Header';
 import FlightsBoard from '../../components/FlightsBoard/FlightsBoard';
 
 export default () => {
-  console.log('render flights page');
-
   const user = useSelector((state) => state.user);
 
   if (user.status === 'NOT_AUTHORIZED') {

@@ -5,8 +5,6 @@ import styles from './styles.module.css';
 import AuthorizationForm from '../../components/AuthorizationForm/AuthorizationForm';
 
 export default () => {
-  console.log('render homepage');
-
   const user = useSelector((state) => state.user);
 
   if (user.status === 'AUTHORIZED') {
