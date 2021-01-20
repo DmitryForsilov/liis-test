@@ -1,5 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
+import * as utils from '../../utils';
 
 const generateOnClick = () => () => {
   console.log('open calendar');
@@ -8,14 +10,22 @@ const generateOnClick = () => () => {
 export default () => {
   console.log('render flights info');
 
+  const {
+    origin, destination, departureDate,
+  } = useSelector((state) => state.flightOptions);
+
   return (
     <div className={styles['flights-board__info']}>
-      <ul className={styles['flights-board__breadcrumbs']}>
-        <li className={styles['flights-board__breadcrumbs-item']}>Вылеты</li>
-        <li className={styles['flights-board__breadcrumbs-item']}>SVO - JFK</li>
-      </ul>
+      <p className={styles['flights-board__route']}>
+        <span>Вылеты</span>
+        <span>
+          {origin}
+          {' - '}
+          {destination}
+        </span>
+      </p>
       <button className={styles['flights-board__calendar-button']} type="button" onClick={generateOnClick()}>
-        <span className={styles['flights-board__calendar-button-text']}>07 июля 2020</span>
+        <span className={styles['flights-board__calendar-button-text']}>{utils.formatDate(departureDate)}</span>
         <svg width="22" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             className={styles['flights-board__calendar-button-icon']}

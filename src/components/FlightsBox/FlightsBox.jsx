@@ -1,26 +1,9 @@
 import React from 'react';
+import { useSelector/* , useDispatch */ } from 'react-redux';
 import cn from 'classnames';
+// import { actions } from '../../redux/slices';
 import styles from './styles.module.css';
-
-const getFlights = (count = 20) => {
-  const flights = [];
-
-  for (let i = 0; i < count; i += 1) {
-    const flight = {
-      id: i,
-      departure: 'Moscow (SVO)',
-      arrival: 'New York City (JFK)',
-      date: '28 June, 2020',
-      time: '14:50',
-      company: 'Aeroflot',
-      price: '23 924 ₽',
-    };
-
-    flights.push(flight);
-  }
-
-  return flights;
-};
+import * as utils from '../../utils';
 
 const generateOnClick = () => () => {
   console.log('like');
@@ -50,22 +33,22 @@ const renderFlight = (flight) => (
     <div className={styles['flights-box__flight-info-container']}>
       <div className={styles['flights-box__flight-info-panel']}>
         <p className={styles['flights-box__route']}>
-          <span>{flight.departure}</span>
-          <span>{flight.arrival}</span>
+          <span>{flight.origin}</span>
+          <span>{flight.destination}</span>
         </p>
         {renderLikeButton()}
       </div>
       <div className={styles['flights-box__flight-info-panel']}>
         <p className={styles['flights-box__date-time']}>
-          <span>{flight.date}</span>
-          <span>{flight.time}</span>
+          <span>{utils.formatDate(flight.departureDate)}</span>
+          <span>{flight.departureTime}</span>
         </p>
       </div>
       <div className={styles['flights-box__flight-info-panel']}>
-        <p className={styles['flights-box__company']}>{flight.company}</p>
+        <p className={styles['flights-box__company']}>{flight.carrier}</p>
         <p className={styles['flights-box__price']}>
           Price:
-          <span>{` ${flight.price}`}</span>
+          <span>{` ${utils.formatPrice(flight.price)}`}</span>
         </p>
       </div>
     </div>
@@ -75,12 +58,24 @@ const renderFlight = (flight) => (
 export default () => {
   console.log('render flights box');
 
-  const flights = getFlights();
+  const flightsList = useSelector(({ flights }) => (
+    flights.flightsList.allIds.map((id) => flights.flightsList.flightsById[id])
+  ));
+  const favoritesCount = useSelector(({ flights }) => flights.favoritesCount);
+  const error = useSelector(({ flights }) => flights.fetchFlightsError);
 
-  if (flights.length < 1) {
+  const messageClasses = cn(styles['flights-box__message'], {
+    [styles['flights-box__message_invalid']]: error,
+  });
+
+  if (flightsList.length < 1 || error) {
     return (
       <div className={styles['flights-box']}>
-        <p className={styles['flights-box__no-flights-message']}>На эту дату нет вылетов. Выберите другую дату.</p>
+        <p className={messageClasses}>
+          {error
+            ? 'Не удается загрузить данные о вылетах.'
+            : 'На эту дату нет вылетов. Выберите другую дату.'}
+        </p>
       </div>
     );
   }
@@ -88,11 +83,13 @@ export default () => {
     <div className={styles['flights-box']}>
       <p className={styles['flights-box__favorites']}>
         Добавлено в Избранное:
-        <span>{' 10 '}</span>
+        <span>
+          {` ${favoritesCount} `}
+        </span>
         рейсов
       </p>
       <ul className={styles['flights-box__list']}>
-        {flights.map(renderFlight)}
+        {flightsList.map(renderFlight)}
       </ul>
     </div>
   );

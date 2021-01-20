@@ -4,10 +4,14 @@
   color: var(--color-black);
 }
 
-.flights-box__no-flights-message, .flights-box__favorites {
+.flights-box__message, .flights-box__favorites {
   margin: 0 0 20px 0;
   font-size: 17px;
   font-weight: 300;
+}
+
+.flights-box__message_invalid {
+  color: var(--color-red);
 }
 
 .flights-box__favorites > span {

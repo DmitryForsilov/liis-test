@@ -8,7 +8,6 @@ const generateOnClick = ({ dispatch }) => () => {
   const confirmation = window.confirm('Вы действительно хотите выйти?');
 
   if (confirmation) {
-    // saga?
     dispatch(actions.setUser({ status: 'NOT_AUTHORIZED' }));
     removeLoginFromCookie();
   }

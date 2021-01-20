@@ -1,23 +1,28 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import HomePage from './pages/Home/Home';
 import FlightsPage from './pages/Flights/Flights';
 import { actions } from './redux/slices';
-import { getLoginFromCookie } from './api';
+import * as api from './api';
+
+const checkAuthorization = ({ dispatch, departureDate }) => {
+  const login = api.getLoginFromCookie();
+
+  if (login) {
+    dispatch(actions.fetchFlightsRequest({ departureDate }));
+    dispatch(actions.setUser({ status: 'AUTHORIZED' }));
+  }
+};
 
 export default () => {
   console.log('render App');
 
   const dispatch = useDispatch();
+  const departureDate = useSelector(({ flightOptions }) => flightOptions.departureDate);
 
-  // заюзать сагу?
   useEffect(() => {
-    const login = getLoginFromCookie();
-
-    if (login) {
-      dispatch(actions.setUser({ status: 'AUTHORIZED' }));
-    }
+    checkAuthorization({ dispatch, departureDate });
   });
 
   return (

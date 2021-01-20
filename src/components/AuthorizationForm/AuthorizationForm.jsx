@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import * as yup from 'yup';
 import { actions } from '../../redux/slices';
-import { setLoginToCookie } from '../../api';
+import * as api from '../../api';
 import styles from './styles.module.css';
 
 const renderForm = (formik) => {
@@ -73,16 +73,17 @@ const generateValidationSchema = () => yup.object().shape({
     .required('Пароль - обязательное поле'),
 });
 
-const generateOnSubmit = ({ dispatch }) => ({ login }) => {
-  // saga?
-  setLoginToCookie(login);
+const generateOnSubmit = ({ dispatch, departureDate }) => ({ login }) => {
+  dispatch(actions.fetchFlightsRequest({ departureDate }));
   dispatch(actions.setUser({ status: 'AUTHORIZED' }));
+  api.setLoginToCookie(login);
 };
 
 export default () => {
   console.log('render form');
 
   const user = useSelector((state) => state.user);
+  const departureDate = useSelector(({ flightOptions }) => flightOptions.departureDate);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -91,7 +92,7 @@ export default () => {
       password: '',
     },
     validationSchema: generateValidationSchema(),
-    onSubmit: generateOnSubmit({ dispatch }),
+    onSubmit: generateOnSubmit({ dispatch, departureDate }),
   });
 
   if (user.status === 'AUTHORIZED') {
