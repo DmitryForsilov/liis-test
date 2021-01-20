@@ -11,6 +11,8 @@ const formatDate = (utcDate) => {
   return formattedDate;
 };
 
+const converStringDateToUtcInMs = (date) => Date.parse(date);
+
 const getRundomNum = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const getRandomTime = () => {
@@ -35,4 +37,5 @@ export {
   getRandomTime,
   getRandomPrice,
   formatPrice,
+  converStringDateToUtcInMs,
 };

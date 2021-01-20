@@ -23,26 +23,31 @@ const sortByPrice = (flightsList) => {
   });
 };
 
+const generateInitialFligtsList = () => ({
+  flightsById: {},
+  allIds: [],
+});
+
 const flightsSlice = createSlice({
   name: 'flights',
   initialState: {
-    flightsList: {
-      flightsById: {},
-      allIds: [],
-    },
+    flightsList: generateInitialFligtsList(),
     likedFlightsIds: [],
     fetchFlightsError: null,
   },
   reducers: {
     fetchFlightsSuccess(state, { payload: { flights, departureDate } }) {
       const proccessedFlights = proccessFlightsData(flights, departureDate);
+      const newFlightsList = generateInitialFligtsList();
 
       proccessedFlights.forEach((flight) => {
-        state.flightsList.flightsById[flight.id] = flight;
-        state.flightsList.allIds.push(flight.id);
+        newFlightsList.flightsById[flight.id] = flight;
+        newFlightsList.allIds.push(flight.id);
       });
 
-      sortByPrice(state.flightsList);
+      sortByPrice(newFlightsList);
+      state.flightsList = newFlightsList;
+      state.likedFlightsIds = [];
     },
     fetchFlightsFailure(state, { payload: { error } }) {
       state.fetchFlightsError = error;

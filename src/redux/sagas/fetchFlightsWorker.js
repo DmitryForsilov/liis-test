@@ -6,6 +6,7 @@ function* fetchFlightsWorker({ payload }) {
   try {
     const flights = yield call(api.fetchFakeFlights);
 
+    console.log('departureDate in saga', payload.departureDate);
     yield put(actions.fetchFlightsSuccess({ flights, departureDate: payload.departureDate }));
   } catch (error) {
     console.log(error);

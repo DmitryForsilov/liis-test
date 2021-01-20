@@ -9,12 +9,8 @@ const flightOptionsSlice = createSlice({
     departureDate: Date.now(),
   },
   reducers: {
-    setFlightOptions(state, { payload: { options } }) {
-      const updatedState = { ...state, ...options };
-      /* const { departureDate } = updatedState;
-
-      updatedState.departureDate = formatDate(departureDate); */
-      return updatedState;
+    setDepartureDate(state, { payload: { departureDate } }) {
+      state.departureDate = departureDate;
     },
   },
 });
