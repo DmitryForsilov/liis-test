@@ -49,6 +49,7 @@ export default () => {
           customInput={renderCalendarButton({ departureDate })}
           selected={departureDate}
           onChange={generateOnChange({ dispatch })}
+          popperPlacement="top-end"
         />
       </div>
     </div>

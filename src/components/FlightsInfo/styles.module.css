@@ -1,5 +1,4 @@
 .flights-board__info {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,4 +56,22 @@
 
 .flights-board__calendar-button:hover .flights-board__calendar-button-icon {
   stroke: var(--color-blue-dark);
+}
+
+@media (max-width: 780px) {
+  .flights-board__route {
+    font-size: 24px;
+  }
+
+  .flights-board__route > span:first-of-type {
+    display: none;
+  }
+
+  .flights-board__route > span::after {
+    display: none;
+  }
+
+  .flights-board__calendar-button-text {
+    display: none;
+  }
 }

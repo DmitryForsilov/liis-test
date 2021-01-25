@@ -35,3 +35,9 @@
 .header__logout-button:hover .header__logout-button-icon {
   stroke: var(--color-blue-dark);
 }
+
+@media (max-width: 576px) {
+  .header__logout-button-text {
+    display: none;
+  }
+}

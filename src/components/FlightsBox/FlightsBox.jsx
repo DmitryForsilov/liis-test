@@ -86,11 +86,11 @@ export default () => {
   return (
     <div className={styles['flights-box']}>
       <p className={styles['flights-box__liked']}>
-        Добавлено в Избранное:
+        <span>Добавлено в Избранное:</span>
         <span>
           {` ${likedFlights} `}
         </span>
-        рейсов
+        <span>рейсов</span>
       </p>
       <ul className={styles['flights-box__list']}>
         {flightsList.map((flight) => renderFlight({ flight, dispatch }))}

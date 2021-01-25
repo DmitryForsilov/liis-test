@@ -17,3 +17,14 @@
   object-fit: cover;
   object-position: center;
 }
+
+@media (max-width: 576px) {
+  .slider {
+    padding: 12px 0 16px;
+  }
+
+  .slider__slide, .slider__image {
+    width: 110px;
+    height: 100px;
+  }
+}

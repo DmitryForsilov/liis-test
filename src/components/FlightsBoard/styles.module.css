@@ -8,3 +8,9 @@
   border-radius: 20px;
   color: var(--color-black);
 }
+
+@media (max-width: 576px) {
+  .flights-board {
+    padding: 34px 20px 20px;
+  }
+}
